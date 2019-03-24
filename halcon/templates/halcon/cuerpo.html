@@ -1,0 +1,37 @@
+{% extends "./base.html" %}
+{% load static %}
+{% load staticfiles %}
+
+{% block title %}itoolboxpro.com{% endblock %}
+
+{% block content %}
+	<center>
+    <p class="descripcion" id="titulo">{{ titulo }}</p>
+    <p class="descripcion" id="descripcion">{{ descripcion }}</p>
+    {% for enlace in enlaces %}
+    <p>{{ enlace }}</p>
+    {% endfor %}
+  	<p><img id="img01" src="{{ imagen }}"></p>
+    <p><video id="vid01" src="{{ video }}" controls style="display: none;"></video></p>
+  </center>
+
+<script type="text/javascript">
+  (function showplayer(){
+    var str = document.getElementById('vid01').src
+    /*alert(str);*/
+    var control = document.getElementById('vid01')
+    if (str=="") {
+      /*No hay video*/
+      control.style.display='none';
+    }
+    else{
+     /*Sí hay video*/
+     control.style.display='block';
+    }
+  })();
+</script>
+
+<script type="text/javascript" script-name="advent-pro" src="http://use.edgefonts.net/advent-pro.js"></script>
+
+{% endblock %}
+	

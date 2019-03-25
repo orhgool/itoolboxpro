@@ -1,6 +1,5 @@
 {% extends "./base.html" %}
 {% load static %}
-{% load staticfiles %}
 
 {% block title %}itoolboxpro.com{% endblock %}
 
@@ -11,6 +10,11 @@
     {% for enlace in enlaces %}
     <p>{{ enlace }}</p>
     {% endfor %}
+
+    
+    <code>{{ subtitulos }}</code>
+    
+
   	<p><img id="img01" src="{{ imagen }}"></p>
     <p><video id="vid01" src="{{ video }}" controls style="display: none;"></video></p>
   </center>

@@ -13,15 +13,6 @@ from .models import DlFromWebs
 def index(request):
 	if request.method == 'POST' and 'url' in request.POST:
 		url = request.POST['url']
-		if 'instagram' in url:
-			host="Instagram"
-		if 'youtube' in url:
-			host="YouTube"
-		if 'youtu.be' in url:
-			host="YouTube"
-		if 'twitter' in url:
-			host="Twitter"
-
 		response = urllib.request.urlopen(url)
 		html = response.read()
 		soup = BeautifulSoup(html)
@@ -30,17 +21,16 @@ def index(request):
 		imagen = ""
 		video = ""
 		enlaces = ""
-		if (host == "YouTube"):
-			#YouTube('url').streams.first().download()
-			yt = YouTube(url)
-			#yt.streams.order_by('resolution')
-			enlaces = yt.streams.filter(progressive=False, file_extension='mp4').all()
-			# yt.streams.get_by_itag(140).download()
-			# yt.filter(progressive=True, file_extension='mp4')
-			# yt.order_by('resolution')
-			# yt.desc()
-			# yt.first()
-			# yt.streams.first().download()
+		subtitulos = ""
+
+		if 'instagram' in url:
+			host="Instagram"
+		if 'youtube' or 'youtu.be' in url:
+			host="YouTube"
+		if 'twitter' in url:
+			host="Twitter"
+		if 'facebook' in url:
+			host="Facebook"
 
 		#enlace = soup.find("meta",  property="og:image")
 		for tag in soup.find_all("meta"):
@@ -56,7 +46,7 @@ def index(request):
 			if tag.get("property", None) == "og:video":
 				video = tag.get("content", None)
 
-		datos = {'url': url, 'host': host, 'titulo': titulo, 'descripcion': descripcion, 'imagen': imagen, 'video': video, 'enlaces': enlaces}
+		datos = {'url': url, 'host': host, 'titulo': titulo, 'descripcion': descripcion, 'imagen': imagen, 'video': video}
 
 		insertar_registro = DlFromWebs(url_text=url, media_src=imagen, media_titulo=titulo, media_descripcion=descripcion, media_host=host)
 		insertar_registro.save()

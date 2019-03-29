@@ -26,7 +26,7 @@
 <div class="row">
 	<div class="col-md-12"  align="center">
 		<nav class="navbar navbar-light bg-light">
-			<form class="form-inline" action="{% url 'halcon:index' %}" method="POST">
+			<form class="form-inline" action="{% url 'halcon:resultados' %}" method="POST">
 				{% csrf_token %}
 				<input class="form-control mr-sm-2" type="textfield" placeholder="Search" aria-label="Box it!" value="{{ url }}" id="url" name="url" onFocus="seltext();" style="float: center">
 				<button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="float: center">Search</button>

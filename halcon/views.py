@@ -1,6 +1,7 @@
 import os
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
+from django.urls import reverse
 import urllib.parse
 import urllib.request
 from bs4 import BeautifulSoup
@@ -8,9 +9,15 @@ from pytube import YouTube
 from django.utils import timezone
 
 from .models import DlFromWebs
-#from html.parser import HTMLParser
+
 
 def index(request):
+	ultimos_boxes = DlFromWebs.objects.filter(fecha__lte=timezone.now()).order_by('-fecha')[:12]
+	index_context = {'ultimos_boxes': ultimos_boxes}
+	return render(request, 'halcon/index.html', index_context)
+
+
+def resultados(request):
 	if request.method == 'POST' and 'url' in request.POST:
 		url = request.POST['url']
 		response = urllib.request.urlopen(url)
@@ -21,6 +28,7 @@ def index(request):
 		imagen = ""
 		video = ""
 		enlaces = ""
+		host = ""
 		subtitulos = ""
 
 		if 'instagram' in url:
@@ -32,7 +40,6 @@ def index(request):
 		if 'facebook' in url:
 			host="Facebook"
 
-		#enlace = soup.find("meta",  property="og:image")
 		for tag in soup.find_all("meta"):
 			if tag.get("property", None) == "og:title":
 				titulo = tag.get("content", None)
@@ -53,4 +60,4 @@ def index(request):
 
 		return render(request, 'halcon/cuerpo.html', datos)
 	else:
-		return render(request, 'halcon/index.html')   
+		return render(request, 'halcon/cuerpo.html', datos)

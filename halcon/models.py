@@ -10,8 +10,11 @@ class DlFromWebs(models.Model):
 	media_host = models.TextField(max_length=20, default='')
 
 	def __str__(self):
-		return self.url_text
+		return self.media_host
 
-	def recien_1_dia(self):
-	    now = timezone.now()
-	    return now - datetime.timedelta(days=1) <= self.fecha <= now
+	def get_data():
+		return DlFromWebs.objects
+
+	def was_published_recently(self):
+		now = timezone.now()
+		return now - datetime.timedelta(days=30) <= self.fecha <= now

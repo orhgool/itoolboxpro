@@ -1,4 +1,26 @@
 {% extends "./base.html" %}
 {% block content %}
 	<p align="center">Últimos boxes</p>
+
+	<div class="container-fluid">
+		<div class="row">
+			{% for box in ultimos_boxes %}
+			<div class="col-md-4" style="padding-top: 36px;">
+				<div class="card">
+					<h5 class="card-header">
+						<a href="{{ box.url_text }}" target="_blank">{{ box.media_host }}
+					</h5>
+					<div class="card-body">
+						<p class="card-text" align="center">
+							<img src="{{ box.media_src }}" alt="Example" width=90%></a>
+						</p>
+					</div>
+					<div class="card-footer">
+						{{ box.media_titulo }}
+					</div>
+				</div>
+			</div>
+			{% endfor %}
+		</div>
+	</div>
 {% endblock %}

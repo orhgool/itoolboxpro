@@ -39,6 +39,8 @@ def resultados(request):
 			host="Twitter"
 		if 'facebook' in url:
 			host="Facebook"
+		if 'pinterest' in url:
+			host="Pinterest"
 
 		for tag in soup.find_all("meta"):
 			if tag.get("property", None) == "og:title":

@@ -1,1 +1,23 @@
-# Empty CSS file for your own CSS
+.enjoy-css-titulo {
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  border: none;
+  font: normal normal bold 25px/1 "advent-pro", Helvetica, sans-serif;
+  color: #424242;
+  text-align: center;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+}
+
+.enjoy-css-descripcion {
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  border: none;
+  font: normal 20px/1 "advent-pro", Helvetica, sans-serif;
+  color: #424242;
+  text-align: center;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+}

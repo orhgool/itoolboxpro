@@ -5,8 +5,9 @@
 
 {% block content %}
 	<center>
-    <p class="descripcion" id="titulo">{{ titulo }}</p>
-    <p class="descripcion" id="descripcion">{{ descripcion }}</p>
+    <div class="enjoy-css-titulo">{{ titulo }}</div>
+    <div class="enjoy-css-descripcion">{{ descripcion }}</div>
+    
     {% for enlace in enlaces %}
     <p>{{ enlace }}</p>
     {% endfor %}

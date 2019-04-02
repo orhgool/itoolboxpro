@@ -1,10 +1,12 @@
 {% extends "./base.html" %}
 {% block content %}
-	<h1 align="center">Latest boxes</h1>
-
+	<div class="enjoy-css-titulo">
+		<h1 style="text-align: center; margin-top: 100px;">Latest boxes</h1>
+	</div>
 	<div class="container-fluid">
 		<div class="row">
 			{% for box in ultimos_boxes %}
+			
 			<div class="col-md-4" style="padding-top: 36px;">
 				<div class="card">
 					<h5 class="card-header">
@@ -16,7 +18,9 @@
 						</p>
 					</div>
 					<div class="card-footer">
-						{{ box.media_titulo }}
+						<div class="enjoy-css-descripcion">
+							{{ box.media_titulo }}
+						</div>
 					</div>
 				</div>
 			</div>

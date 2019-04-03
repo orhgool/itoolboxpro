@@ -11,8 +11,23 @@
     <div class="enjoy-css-descripcion">
       <p>{{ descripcion }}</p>
     </div>
-    <p><img id="img01" src="{{ imagen }}"></p>
-    <p><video id="vid01" src="{{ video }}" controls style="display: none;"></video></p>
+
+    {% for x in subtitulos %}
+      <p>{{ x }}</p>
+    {% endfor %}
+    
+    <p><img id="img01" src="https://i.ytimg.com/vi/{{ videoid }}/0.jpg"></p>
+    <p><img id="img02" src="https://i.ytimg.com/vi/{{ videoid }}/1.jpg">
+    <img id="img03" src="https://i.ytimg.com/vi/{{ videoid }}/2.jpg">
+    <img id="img04" src="https://i.ytimg.com/vi/{{ videoid }}/3.jpg"></p>
+    <p><img id="img05" src="https://i.ytimg.com/vi/{{ videoid }}/default.jpg"></p>
+    <p><img id="img06" src="https://i.ytimg.com/vi/{{ videoid }}/mqdefault.jpg"></p>
+    <p><img id="img07" src="https://i.ytimg.com/vi/{{ videoid }}/hqdefault.jpg"></p>
+    <p><img id="img08" src="https://i.ytimg.com/vi/{{ videoid }}/sddefault.jpg"></p>
+    <p><img id="img09" src="https://i.ytimg.com/vi/{{ videoid }}/maxresdefault.jpg"></p>
+    <p>
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ videoid }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </p>
   </center>
 {% endblock %}
 	

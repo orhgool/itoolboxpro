@@ -32,13 +32,13 @@ def resultados(request):
 		host = ""
 		subtitulos = ""
 		formatos = ""
+		videoid = ""
 
 		if 'youtube' in url or 'youtu.be' in url:
 			host="YouTube"
 			plantilla = 'halcon/youtube.html'
 			yt = YouTube(url)
 			videoid = yt.video_id
-			subtitulos = yt.captions.all()
 
 			for tag in soup.find_all("meta"):
 				if tag.get("property", None) == "og:title":
@@ -54,7 +54,7 @@ def resultados(request):
 					video = tag.get("content", None)
 			
 
-		if 'twitter' in url:
+		elif 'twitter' in url:
 			host="Twitter"
 			plantilla = 'halcon/cuerpo.html'
 			for tag in soup.find_all("meta"):
@@ -70,7 +70,7 @@ def resultados(request):
 				if tag.get("property", None) == "og:video:url":
 					video = tag.get("content", None)
 
-		if 'facebook' in url:
+		elif 'facebook' in url:
 			host="Facebook"
 			plantilla = 'halcon/cuerpo.html'
 			for tag in soup.find_all("meta"):
@@ -87,7 +87,7 @@ def resultados(request):
 					video = tag.get("content", None)
 
 
-		if 'instagram' in url:
+		elif 'instagram' in url:
 			host="Instagram"
 			plantilla = 'halcon/cuerpo.html'
 			for tag in soup.find_all("meta"):
@@ -104,7 +104,7 @@ def resultados(request):
 					video = tag.get("content", None)
 
 
-		if 'pinterest' in url:
+		elif 'pinterest' in url:
 			host="Pinterest"
 			plantilla = 'halcon/cuerpo.html'
 			for tag in soup.find_all("meta"):
@@ -120,7 +120,7 @@ def resultados(request):
 				if tag.get("property", None) == "og:video":
 					video = tag.get("content", None)
 
-		if 'vimeo' in url:
+		elif 'vimeo' in url:
 			host="Vimeo"
 			plantilla = 'halcon/cuerpo.html'
 			for tag in soup.find_all("meta"):
@@ -136,8 +136,24 @@ def resultados(request):
 				if tag.get("property", None) == "og:video":
 					video = tag.get("content", None)
 
+		else:
+			host="Web"
+			plantilla = 'halcon/cuerpo.html'
+			for tag in soup.find_all("meta"):
+				if tag.get("property", None) == "og:title":
+					titulo = tag.get("content", None)
+
+				if tag.get("property", None) == "og:description":
+					descripcion = tag.get("content", None) 
+
+				if tag.get("property", None) == "og:image":
+					imagen = tag.get("content", None)
+
+				if tag.get("property", None) == "og:video":
+					video = tag.get("content", None)
+
 			
-		datos = {'url': url, 'host': host, 'titulo': titulo, 'descripcion': descripcion, 'imagen': imagen, 'video': video, 'videoid': videoid, 'subtitulos': subtitulos}
+		datos = {'url': url, 'host': host, 'titulo': titulo, 'descripcion': descripcion, 'imagen': imagen, 'video': video, 'videoid': videoid}
 		insertar_registro = DlFromWebs(url_text=url, media_src=imagen, media_titulo=titulo, media_descripcion=descripcion, media_host=host)
 		insertar_registro.save()
 

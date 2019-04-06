@@ -4,8 +4,8 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
 <meta name="description" content="Visualizacion y descarga de las imágenes y vídeos" />
-<meta name="keywords" content="youtube, instagram, thumbs, thumbnails, images, miniaturas, imagenes, descargar, guardar, videos" />
-<meta name="author" content="metatags generator">
+<meta name="keywords" content="youtube, instagram, facebook, pinterest, vimeo, web, thumbs, thumbnails, images, miniaturas, imagenes, descargar, guardar, videos" />
+<meta name="author" content="itoolboxpro">
 <meta name="robots" content="index, follow">
 <title>itoolboxpro.com</title>
 
@@ -26,7 +26,7 @@
 	<div class="row">
 		<div class="col-md-12">
 			<!--nav class="navbar navbar-expand-lg navbar-light bg-light navbar-dark bg-dark navbar-fixed-top"-->
-			<nav class="navbar navbar-light bg-light navbar-dark bg-dark">
+			<nav class="navbar fixed-top navbar-light bg-light navbar-dark bg-dark">
 				 
 				<a class="navbar-brand" href="/">
 							<img src="{% static 'halcon/img/itoolboxpro.png' %}" width="100px" height="60px" alt="">itoolboxpro.com</a>
@@ -65,6 +65,18 @@
 <div class="row" id="content">
 	<div class="col-md-12">
 		{% block content %}{% endblock %}
+	</div>
+</div>
+
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+			<hr>
+			<p class="text-secondary" align="center">All rights belong to the person or entity that published the content on each host.</p>
+				
+			<p class="text-secondary" align="center">We only provide another option to view said content.</p>
+		</div>
 	</div>
 </div>
 

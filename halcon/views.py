@@ -117,8 +117,7 @@ def resultados(request):
 				if tag.get("property", None) == "og:image":
 					imagen = tag.get("content", None)
 
-				if tag.get("property", None) == "og:video":
-					video = tag.get("content", None)
+				video = soup.find("source").get("src")
 
 		elif 'vimeo' in url:
 			host="Vimeo"

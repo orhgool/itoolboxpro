@@ -2,7 +2,7 @@ from django.db import models
 from django.utils import timezone
 
 class DlFromWebs(models.Model):
-	url_text = models.URLField(max_length=200)
+	url_text = models.URLField(max_length=1000)
 	fecha = models.DateTimeField('fecha', default=timezone.now)
 	media_src = models.TextField(max_length=300, default='')
 	media_titulo = models.TextField(max_length=300, default='')

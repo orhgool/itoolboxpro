@@ -6,13 +6,12 @@
 {% block content %}
 	<center>
     <div class="enjoy-css-titulo" style="padding-top: 100px;">
-      <p>{{ titulo }}</p>
+      <p>{{ box.media_titulo }}</p>
     </div>
     <div class="enjoy-css-descripcion">
-      <p>{{ descripcion }}</p>
+      <p>{{ box.media_descripcion }}</p>
     </div>
-    <p><img id="img01" src="{{ imagen }}"></p>
-    <p><video id="vid01" src="{{ video }}" controls></video></p>
+    <p><img id="img01" src="{{ box.media_src }}"></p>
+    <a href="{{ box.url_text }}" target="blank">View original source</a>
   </center>
 {% endblock %}
-	

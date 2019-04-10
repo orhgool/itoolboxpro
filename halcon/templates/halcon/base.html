@@ -51,8 +51,14 @@
 <!-- Inicia nabvar-->
 
 <!-- -->
-
-{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+{% if error_message %}
+	<div class="alert alert-primary alert-dismissible fade show" role="alert" style="margin-top: 100px;">
+	  <p>{{ error_message }}</p>
+	  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+	    <span aria-hidden="true">&times;</span>
+	  </button>
+	</div>
+{% endif %}
 <body>
 
 
@@ -85,7 +91,7 @@
     var str = document.getElementById('vid01').src
     /*alert(str);*/
     var control = document.getElementById('vid01')
-    if (str=="") {
+    if (str=="vacio") {
       /*No hay video*/
       control.style.display='none';
     }

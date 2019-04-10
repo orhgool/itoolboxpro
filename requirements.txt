@@ -2,3 +2,4 @@ django_heroku
 bs4
 pytube
 gunicorn
+lxml

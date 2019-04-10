@@ -1,15 +1,13 @@
-import os
-from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import get_object_or_404, render
-from django.urls import reverse
-import urllib.parse
-import urllib.request
-from bs4 import BeautifulSoup
+import os, re, urllib.parse, urllib.request, httplib2
+
 from pytube import YouTube
+from bs4 import BeautifulSoup, SoupStrainer
+from django.urls import reverse
 from django.utils import timezone
+from django.shortcuts import get_object_or_404, render
+from django.http import HttpResponse, HttpResponseRedirect
 
 from .models import DlFromWebs
-
 
 def index(request):
 	ultimos_boxes = DlFromWebs.objects.filter(fecha__lte=timezone.now()).order_by('-fecha')[:12]
@@ -18,12 +16,14 @@ def index(request):
 
 
 def resultados(request):
+	imgs = []
 	plantilla = ""
+	error_message = ""
 	if request.method == 'POST' and 'url' in request.POST:
 		url = request.POST['url']
 		response = urllib.request.urlopen(url)
 		html = response.read()
-		soup = BeautifulSoup(html)
+		soup = BeautifulSoup(html, "lxml")
 		titulo = ""
 		descripcion =""
 		imagen = ""
@@ -117,7 +117,19 @@ def resultados(request):
 				if tag.get("property", None) == "og:image":
 					imagen = tag.get("content", None)
 
-				video = soup.find("source").get("src")
+			#video = soup.select_one("a[href*=kiwilimon]")
+
+			#video = soup.select_one("source[src*=pinimg.com]")
+			
+			 
+			for img in soup.findAll('source'):
+				imgs.append(img.get('src'))
+			
+			error_message = imgs
+				
+			#video = soup.find_all('src', type='video/mp4')
+			
+
 
 		elif 'vimeo' in url:
 			host="Vimeo"
@@ -152,10 +164,14 @@ def resultados(request):
 					video = tag.get("content", None)
 
 			
-		datos = {'url': url, 'host': host, 'titulo': titulo, 'descripcion': descripcion, 'imagen': imagen, 'video': video, 'videoid': videoid}
+		datos = {'url': url, 'host': host, 'titulo': titulo, 'descripcion': descripcion, 'imagen': imagen, 'video': video, 'videoid': videoid, 'error_message': error_message}
 		insertar_registro = DlFromWebs(url_text=url, media_src=imagen, media_titulo=titulo, media_descripcion=descripcion, media_host=host)
 		insertar_registro.save()
 
 		return render(request, plantilla, datos)
 	else:
 		return render(request, plantilla, datos)
+
+def detalle(request, url_id):
+	box = get_object_or_404(DlFromWebs, id=url_id)
+	return render(request, 'halcon/detalle.html', {'box': box})

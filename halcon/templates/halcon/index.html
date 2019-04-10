@@ -7,10 +7,10 @@
 		<div class="row">
 			{% for box in ultimos_boxes %}
 			
-			<div class="col-md-4" style="padding-top: 36px;">
+			<div class="col-md-3" style="padding-top: 36px;">
 				<div class="card">
 					<h5 class="card-header">
-						<a href="{{ box.url_text }}" target="_blank">{{ box.media_host }}
+						<a href="{% url 'halcon:detalle' box.id %}">{{ box.media_host }}
 					</h5>
 					<div class="card-body">
 						<p class="card-text" align="center">
@@ -19,7 +19,7 @@
 					</div>
 					<div class="card-footer">
 						<div class="enjoy-css-descripcion">
-							{{ box.media_titulo }}
+							{{ box.media_descripcion }}
 						</div>
 					</div>
 				</div>

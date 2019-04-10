@@ -11,6 +11,8 @@ from .models import DlFromWebs
 
 def index(request):
 	ultimos_boxes = DlFromWebs.objects.filter(fecha__lte=timezone.now()).order_by('-fecha')[:12]
+	top_3_hosts = DlFromWebs.objects.filter(fecha__lte=timezone.now()).order_by('-fecha')[:3]
+	urls_del_mes = DlFromWebs.objects.filter(fecha__lte=timezone.now()).order_by('-fecha')[:5]
 	index_context = {'ultimos_boxes': ultimos_boxes}
 	return render(request, 'halcon/index.html', index_context)
 

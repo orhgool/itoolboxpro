@@ -1,10 +1,57 @@
 {% extends "./base.html" %}
 {% block content %}
-	<div class="enjoy-css-titulo">
-		<h1 style="text-align: center; margin-top: 100px;">Latest boxes</h1>
-	</div>
-	<div class="container-fluid">
+
+	<div class="container-fluid" style="margin-top: 100px;">
 		<div class="row">
+			<div class="col-md-12">
+				<div class="jumbotron">
+					<h2>
+						Welcome to itoolboxpro!
+					</h2>
+					<p>
+						<span>Here you can see and download the images that you like the most from your favorite social networks, in its maximum resolution.</span> Including different sizes of the thumbnails of YouTube videos.
+					</p>
+					<p>
+						<a class="btn btn-primary btn-large" href="#">Learn more</a>
+					</p>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-4">
+				<h2>
+					Step 1
+				</h2>
+				<p>
+					In a social network like Instagram, copy the url of the image or video you want
+				</p>
+			</div>
+			<div class="col-md-4">
+				<h2>
+					Step 2
+				</h2>
+				<p>
+					Paste the url in box above, then click in the button Box It!
+				</p>
+			</div>
+			<div class="col-md-4">
+				<h2>
+					Step 3
+				</h2>
+				
+				<p>
+					Enjoy!... <span>In addition, you can see the pictures of other users, it could like you one of them.</span>
+				</p>
+			</div>
+		</div>
+	</div>
+
+	<div class="container-fluid">
+		<div class="enjoy-css-titulo">
+			<h1 style="text-align: center;">Latest boxes</h1>
+		</div>
+			<div class="row">
+
 			{% for box in ultimos_boxes %}
 			
 			<div class="col-md-3" style="padding-top: 36px;">

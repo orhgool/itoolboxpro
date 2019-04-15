@@ -30,6 +30,7 @@ def resultados(request):
 		descripcion =""
 		imagen = ""
 		video = "vacio"
+		mostrar_video = "none"
 		enlaces = ""
 		host = ""
 		subtitulos = ""
@@ -87,6 +88,7 @@ def resultados(request):
 
 				if tag.get("property", None) == "og:video":
 					video = tag.get("content", None)
+					mostrar_video = "block"
 
 
 		elif 'instagram' in url:
@@ -104,6 +106,7 @@ def resultados(request):
 
 				if tag.get("property", None) == "og:video":
 					video = tag.get("content", None)
+					mostrar_video = "block"
 
 
 		elif 'pinterest' in url:
@@ -124,10 +127,10 @@ def resultados(request):
 			#video = soup.select_one("source[src*=pinimg.com]")
 			
 			 
-			for img in soup.findAll('source'):
-				imgs.append(img.get('src'))
+			"""for img in soup.findAll('source'):
+				imgs.append(img.get('src'))"""
 			
-			error_message = imgs
+			#error_message = imgs
 				
 			#video = soup.find_all('src', type='video/mp4')
 			
@@ -148,6 +151,7 @@ def resultados(request):
 
 				if tag.get("property", None) == "og:video":
 					video = tag.get("content", None)
+					mostrar_video = "block"
 
 		else:
 			host="Web"
@@ -164,9 +168,10 @@ def resultados(request):
 
 				if tag.get("property", None) == "og:video":
 					video = tag.get("content", None)
+					mostrar_video = "block"
 
 			
-		datos = {'url': url, 'host': host, 'titulo': titulo, 'descripcion': descripcion, 'imagen': imagen, 'video': video, 'videoid': videoid, 'error_message': error_message}
+		datos = {'url': url, 'host': host, 'titulo': titulo, 'descripcion': descripcion, 'imagen': imagen, 'video': video, 'mostrar_video': mostrar_video, 'videoid': videoid, 'error_message': error_message}
 		insertar_registro = DlFromWebs(url_text=url, media_src=imagen, media_titulo=titulo, media_descripcion=descripcion, media_host=host)
 		insertar_registro.save()
 

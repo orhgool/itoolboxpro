@@ -30,7 +30,7 @@
 					<img src="{% static 'halcon/img/itoolboxpro.png' %}" width="100px" height="60px" alt="">itoolboxpro.com</a>					
 				<form class="form-inline" action="{% url 'halcon:resultados' %}" method="POST">
 					{% csrf_token %}
-					<input class="form-control mr-sm-2" type="text" placeholder="Paste url" aria-label="Box it!" value="{{ url }}" id="url" name="url" onFocus="seltext();" style="width: 400px;" align="center"> 
+					<input class="form-control mr-sm-2" type="text" placeholder="Paste url, e.g. https://youtu.be/9_c2XZd9mMo" aria-label="Box it!" value="{{ url }}" id="url" name="url" onFocus="seltext();" style="width: 400px;" align="center"> 
 					<button class="btn btn-primary my-2 my-sm-0" type="submit">
 						Box it!
 					</button>

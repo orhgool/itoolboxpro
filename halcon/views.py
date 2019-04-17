@@ -10,7 +10,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from .models import DlFromWebs
 
 def index(request):
-	ultimos_boxes = DlFromWebs.objects.filter(fecha__lte=timezone.now()).order_by('-fecha')[:12]
+	ultimos_boxes = DlFromWebs.objects.filter(fecha__lte=timezone.now()).order_by('-fecha')[:24]
 	top_3_hosts = DlFromWebs.objects.filter(fecha__lte=timezone.now()).order_by('-fecha')[:3]
 	urls_del_mes = DlFromWebs.objects.filter(fecha__lte=timezone.now()).order_by('-fecha')[:5]
 	index_context = {'ultimos_boxes': ultimos_boxes}
@@ -150,6 +150,23 @@ def resultados(request):
 					imagen = tag.get("content", None)
 
 				if tag.get("property", None) == "og:video":
+					video = tag.get("content", None)
+					mostrar_video = "block"
+
+		elif 'dailymotion' in url:
+			host="Dailymotion"
+			plantilla = 'halcon/cuerpo.html'
+			for tag in soup.find_all("meta"):
+				if tag.get("property", None) == "og:title":
+					titulo = tag.get("content", None)
+
+				if tag.get("property", None) == "og:description":
+					descripcion = tag.get("content", None) 
+
+				if tag.get("property", None) == "og:image":
+					imagen = tag.get("content", None)
+
+				if tag.get("property", None) == "og:video:url":
 					video = tag.get("content", None)
 					mostrar_video = "block"
 

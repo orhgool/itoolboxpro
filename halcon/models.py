@@ -18,3 +18,6 @@ class DlFromWebs(models.Model):
 	def was_published_recently(self):
 		now = timezone.now()
 		return now - datetime.timedelta(days=30) <= self.fecha <= now
+
+class Configuracion(models.Model):
+	vistas_index = models.IntegerField()
